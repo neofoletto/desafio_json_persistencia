@@ -34,6 +34,14 @@ public class ManipJson {
   private GsonBuilder builder;
   private Gson gson;
 
+  /**
+   * Realizar persistência dos dados em um aqruivo .json por meio da biblioteca
+   * GSON.
+   *
+   * @param lista -> recebe lista com os dados inteiros.
+   * @return List<Integer>.
+   * @throws IOException
+   */
   public String grava (List<Integer> lista) throws IOException {
     builder = new GsonBuilder();
     gson = builder.create();
@@ -44,8 +52,14 @@ public class ManipJson {
     return gson.toJson(lista);
   }
 
-  public String ler() throws FileNotFoundException {
-    StringBuilder stringBuilder = new StringBuilder();
+  /**
+   * Localizar e abre o arquivo .json, de forma a recuperar as informações perstidas
+   * no mesmo.
+   *
+   * @return List<Integer>
+   * @throws FileNotFoundException
+   */
+  public List ler() throws FileNotFoundException {
     GsonBuilder builder = new GsonBuilder();
     gson = builder.create();
     BufferedReader bufferedReader = new BufferedReader(new FileReader("json/pessoas.json"));
@@ -54,9 +68,20 @@ public class ManipJson {
 
     List<Integer> lista = new Gson().fromJson(bufferedReader, listType);
 
-    for (Iterator iterator = lista.iterator(); iterator.hasNext(); ) {
-      stringBuilder.append((int) iterator.next());
-      stringBuilder.append(" ");
+    return lista;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder stringBuilder = new StringBuilder();
+
+    try {
+      for (Iterator iterator = ler().iterator(); iterator.hasNext(); ) {
+        stringBuilder.append((int) iterator.next());
+        stringBuilder.append(" ");
+      }
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
     }
     return stringBuilder.toString();
   }

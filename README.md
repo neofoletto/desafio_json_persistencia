@@ -1,2 +1,6 @@
 # desafio_json_persistencia
-Exercícios relacionados a disciplina de Programação Orientada a Objetos do curso de Ciência da Computação - IFC - Rio do Sul. 
+
+Introdução a persistência na matéria de POO1, onde o desafio persistir informações numéricas em um arquivo JSON.
+Logo após, recuperar essas informações e exibi-las no bash.
+
+- Para realização a manipulação do arquivo JSON foi utilizado a bilioteca GSON.jar.
