@@ -14,7 +14,6 @@
 
 package manip_json;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,6 +30,8 @@ import java.util.List;
  */
 public class ManipJson {
 
+  final private String PATH = "json/numeros.json";
+
   private GsonBuilder builder;
   private Gson gson;
 
@@ -45,7 +46,7 @@ public class ManipJson {
   public String grava (List<Integer> lista) throws IOException {
     builder = new GsonBuilder();
     gson = builder.create();
-    FileWriter writer = new FileWriter("json/pessoas.json");
+    FileWriter writer = new FileWriter(PATH);
     writer.write(gson.toJson(lista));
     writer.close();
 
@@ -62,7 +63,7 @@ public class ManipJson {
   public List ler() throws FileNotFoundException {
     GsonBuilder builder = new GsonBuilder();
     gson = builder.create();
-    BufferedReader bufferedReader = new BufferedReader(new FileReader("json/pessoas.json"));
+    BufferedReader bufferedReader = new BufferedReader(new FileReader(PATH));
 
     Type listType = new TypeToken<ArrayList<Integer>>() {}.getType();
 
